@@ -2,7 +2,7 @@
 #include "usb.h"
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
-#include "avr/io.h"
+#include <avr/io.h>
 
 
 static const uint8_t device_descriptor[] PROGMEM = {
@@ -119,9 +119,9 @@ uint8_t usb_read(uint8_t* dat, uint16_t count)
 	count = len;
 	volatile uint8_t * data = dat;
 	while(len--)
-	*data++ = UEDATX;
+		*data++ = UEDATX;
 	if(!UEBCLX)
-	UEINTX = 0x6B;
+		UEINTX = 0x6B;
 	sei();
 	return count;
 }

@@ -7,11 +7,15 @@
 #include <avr/power.h>
 #include "usb.h"
 #include "scsi.h"
+#include "lcd.h"
 uint16_t STR_read(uint8_t* data, uint16_t len)
 {
+
 	return 0;
 }
 uint16_t STR_write(uint8_t* data, uint16_t len){
+	for(uint16_t i = 0; i < 512; i++)
+		LCD_data(data[i]);
 	return 0;
 }
 volatile uint16_t _tx_delay = 0;
@@ -60,15 +64,15 @@ void nl(){
 	Send('\n');
 	Send('\r');
 }
-int main(int argc, char** argv) {
+int main() {
 	PORTC |= (1<<6);
 	DDRC |= ((1 << 7) | (1 << 6));
 	clock_prescale_set(clock_div_32);
 	_delay_ms(100);
 	clock_prescale_set(clock_div_1);
+	LCD_init();
 	initSerial();
 	MSD_Prepare();
-	nl();
 	usb_init();
 	while (!get_usb_config_status()) {
 		PORTC |= (1 << 7);
@@ -76,8 +80,6 @@ int main(int argc, char** argv) {
 		PORTC &= ~(1 << 7);
 		_delay_ms(100);
 	}
-		nl();
-
 	uint16_t ucLen = 0;
 	uint8_t ucData[512] = {0};
 	while(1){

@@ -65,7 +65,7 @@ void MSD_PareseCBW()
 
 		uiBlockNum = ((unsigned int)cbw.CBWCB[7] << 8) + cbw.CBWCB[8] - 1;
 		ulAddr = 512 * (((unsigned long)cbw.CBWCB[2] << 24) + ((unsigned long)cbw.CBWCB[3] << 16) + ((unsigned int)cbw.CBWCB[4] << 8) + cbw.CBWCB[5]);
-		STR_read(ucDataPBP,ulAddr);
+		STR_read(uiBlockNum,ulAddr);
 		break;
 		
 		case WRITE_10:
