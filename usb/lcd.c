@@ -24,7 +24,6 @@ void LCD_cmd(uint8_t data){
 	CTLPRT &= ~WR;
 	CTLPRT |= WR;
 	CTLPRT |= DC;
-	CTLPRT |= RTS;
 }
 
 void LCD_init(){
@@ -104,6 +103,6 @@ void LCD_init(){
 	LCD_cmd(0x2C);
 	_delay_ms(10);
 		
-	for(uint16_t i = 128*160*2; i ;i--)LCD_data(0x00);
+	for(uint16_t i = 128ul*160ul*2ul; i ;i--)LCD_data(0x00);
 
 }

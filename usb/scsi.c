@@ -1,6 +1,7 @@
 #include "scsi.h"
 #include "usb.h"
 #include <string.h>
+#include <avr/pgmspace.h>
 
 static USB_MSD_CSW csw;
 static USB_MSD_CBW cbw;
@@ -19,7 +20,7 @@ static const uint8_t usb_mode_sense[] = {0x03, 0x00, 0x00, 0x00};
 
 static const uint8_t usb_request_sense[] = {0x70, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x24, 0x00, 0x00, 0x00, 0x00, 0x00};
 
-static const CInquiryResponse inq_resp = {
+static const CInquiryResponse inq_resp  = {
 	0x00,                                                             // direct access block device, conne
 	0x80,                                                             // device is removable
 	0x02,                                                             // SPC-2 compliance
@@ -65,7 +66,7 @@ void MSD_PareseCBW()
 
 		uiBlockNum = ((unsigned int)cbw.CBWCB[7] << 8) + cbw.CBWCB[8] - 1;
 		ulAddr = 512 * (((unsigned long)cbw.CBWCB[2] << 24) + ((unsigned long)cbw.CBWCB[3] << 16) + ((unsigned int)cbw.CBWCB[4] << 8) + cbw.CBWCB[5]);
-		STR_read(uiBlockNum,ulAddr);
+		STR_read(ucDataPBP,ulAddr);
 		break;
 		
 		case WRITE_10:
