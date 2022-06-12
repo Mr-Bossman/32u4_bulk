@@ -81,7 +81,10 @@ static const uint8_t configuration_descriptor[CONFIG_SIZE] PROGMEM = {
 	ENDPOINT_NUM_IN|0x80,  // Set keyboard endpoint to IN endpoint, refer to table
 	0x02,      // bmAttributes - Set endpoint to interrupt
 	0x20, 0x00,      // wMaxPacketSize - The size of the keyboard banks
-	0x00       // wInterval - Poll for new data 1000/s, or once every ms
+	0x00,       // wInterval - Poll for new data 1000/s, or once every ms
+	3,
+	1,
+	'A'
 };
 
 uint8_t usb_send(uint8_t * in, uint16_t count) {

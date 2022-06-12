@@ -26,6 +26,6 @@ uint8_t usb_data();
 #define ENDPOINT_NUM_OUT 0x02
 #define ENDPOINT_NUM_IN 0x01
 
-#define CONFIG_SIZE 32
+#define CONFIG_SIZE 35
 
 #endif
