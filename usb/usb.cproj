@@ -139,6 +139,15 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ds18b20.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ds18b20.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="onewire.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="lcd.c">
       <SubType>compile</SubType>
     </Compile>
@@ -146,6 +155,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="onewire.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="scsi.c">

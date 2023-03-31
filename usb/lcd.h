@@ -3,7 +3,7 @@
 #include <stdint.h>
 
 #define WR (1<<4)
-#define RTS (1<<0)
+#define RTS (1<<3)
 #define DC (1<<1)
 #define CTLDDR DDRD
 #define CTLPRT PORTD

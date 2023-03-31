@@ -37,6 +37,8 @@ SUBDIRS :=
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../ds18b20.c \
+../onewire.c \
 ../lcd.c \
 ../main.c \
 ../scsi.c \
@@ -50,24 +52,32 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+ds18b20.o \
+onewire.o \
 lcd.o \
 main.o \
 scsi.o \
 usb.o
 
 OBJS_AS_ARGS +=  \
+ds18b20.o \
+onewire.o \
 lcd.o \
 main.o \
 scsi.o \
 usb.o
 
 C_DEPS +=  \
+ds18b20.d \
+onewire.d \
 lcd.d \
 main.d \
 scsi.d \
 usb.d
 
 C_DEPS_AS_ARGS +=  \
+ds18b20.d \
+onewire.d \
 lcd.d \
 main.d \
 scsi.d \
@@ -87,6 +97,20 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+./ds18b20.o: .././ds18b20.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DNDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -O3 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -Wall -Wextra -mmcu=atmega32u4 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32u4" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./onewire.o: .././onewire.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DNDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include"  -O3 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -Wall -Wextra -mmcu=atmega32u4 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32u4" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 ./lcd.o: .././lcd.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
